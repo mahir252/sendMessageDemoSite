@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content, maximum-scale=1.0, user-scalable=no"
+>
+
+    <title>SendMessage</title>
+
+    <link
+        rel="stylesheet"
+        href="user.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- ==================================================
+         TOP BAR
+    ================================================== -->
+
+    <header class="top-bar">
+
+        <h1>SendMessage</h1>
+
+        <button
+            id="profileBtn"
+            class="profile-btn"
+        >
+
+            <img
+                id="profileBtnImage"
+                src="/default-profile.png"
+                alt="Profile"
+            >
+
+            <span id="profileName">
+                Profile
+            </span>
+
+        </button>
+
+    </header>
+
+
+
+
+<div id="desktopChatLayout">
+
+    <!-- DESKTOP HEADER -->
+    <header id="desktopHeader">
+
+        <div id="desktopAppName">
+            SendMessage
+        </div>
+
+
+
+        <button
+    id="desktopBackBtn"
+    type="button"
+    title="Back"
+>
+    ←
+</button>
+
+
+
+
+     
+
+        <button
+    id="desktopProfileTopBtn"
+    type="button"
+>
+    <img
+        id="desktopProfileTopImage"
+        src="/default-profile.png"
+        alt="Profile"
+    >
+</button>
+
+    </header>
+
+
+    <!-- CHAT LIST -->
+    <div id="desktopChatList">
+    </div>
+
+
+    <!-- MAIN AREA -->
+    <div id="desktopChatArea">
+
+        <div id="noChatsMessage">
+            No chats selected
+        </div>
+
+        <div id="desktopPageHost"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- DESKTOP NAVIGATION -->
+<nav id="desktopBottomNav">
+
+    <button
+        class="nav-btn"
+        data-page="friendsPage"
+        id="desktopFriendsNavBtn"
+        type="button"
+    >
+        <span>👥</span>
+        <span>Friends</span>
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-page="chatsPage"
+        id="desktopChatsNavBtn"
+        type="button"
+    >
+        <span>💬</span>
+        <span>Chats</span>
+    </button>
+
+
+    <button
+         class="nav-btn"
+         data-page="searchPage"
+        id="desktopSearchNavBtn"
+        type="button"
+    >
+        <span>🔍</span>
+        <span>Search</span>
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-page="notificationsPage"
+        id="desktopNotificationsNavBtn"
+        type="button"
+    >
+        <span>🔔</span>
+        <span>Notifications</span>
+    </button>
+
+    
+        <button 
+        class="nav-btn"
+        data-page="profilePage"
+        id="desktopProfileNavBtn"
+        type="button"
+    >
+        <span>👤</span>
+        <span>Profile</span>
+    </button>
+    
+
+</nav>
+
+
+    <!-- ==================================================
+         MAIN CONTENT
+    ================================================== -->
+    <main class="main-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- ==================================================
+             FRIENDS PAGE
+        ================================================== -->
+
+        <section
+            id="friendsPage"
+            class="page active"
+        >
+
+            <h2>Friends</h2>
+
+            <div
+                id="friendList"
+                class="list"
+            >
+                <!-- Friends loaded by JavaScript -->
+            </div>
+
+        </section>
+
+
+
+
+
+
+
+
+
+
+        <!-- ==================================================
+             CHATS PAGE
+        ================================================== -->
+
+        <section
+            id="chatsPage"
+            class="page"
+        >
+
+            <h2>Chats</h2>
+
+            <div
+                id="chatList"
+                class="list"
+            >
+                <!-- Chats loaded by JavaScript -->
+            </div>
+
+        </section>
+        <!--==================================
+             SEARCH PAGE
+        ================================================== -->
+
+        <section
+            id="searchPage"
+            class="page"
+        >
+
+            <h2>Search</h2>
+
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search username..."
+                    autocomplete="on"
+                >
+
+                <button
+                    id="searchBtn"
+                >
+                    Search
+                </button>
+
+            </div>
+
+
+            <h3>Search History</h3>
+
+
+            <div
+                id="searchHistory"
+                class="list"
+            >
+                <!-- Search history -->
+            </div>
+
+
+            <h3>Search Results</h3>
+
+
+            <div
+                id="searchResults"
+                class="list"
+            >
+                <!-- Search results -->
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             NOTIFICATIONS PAGE
+        ================================================== -->
+
+        <section
+            id="notificationsPage"
+            class="page"
+        >
+
+            <h2>Notifications</h2>
+
+
+            <div
+                id="notificationList"
+                class="list"
+            >
+                <!-- Notifications loaded by JavaScript -->
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             PROFILE PAGE
+        ================================================== -->
+
+        <section
+            id="profilePage"
+            class="page"
+        >
+
+            <div class="profile-header">
+
+
+                <!-- PROFILE IMAGE -->
+
+                <div class="profile-picture">
+
+                    <img
+                        id="profileImage"
+                        src="/default-profile.png"
+                        alt="Profile"
+                    >
+
+                </div>
+
+
+                <!-- NAME -->
+
+                <h2 id="profileDisplayName">
+                    User
+                </h2>
+
+
+                <!-- USERNAME -->
+
+                <p id="profileUsername">
+                    @username
+                </p>
+
+
+                <!-- FRIEND COUNT -->
+
+                <p id="friendCountProfile">
+                    Friends: 0
+                </p>
+
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 BIO
+            ================================================== -->
+
+            <div class="bio-section">
+
+
+                <!-- NEW BIO EDITOR -->
+
+                <div
+                    id="bioEditor"
+                >
+
+                    <input
+                        type="text"
+                        id="bioInput"
+                        maxlength="150"
+                        placeholder="Write something about yourself..."
+                    >
+
+                    <button
+                        id="saveBioBtn"
+                    >
+                        Save
+                    </button>
+
+                </div>
+
+
+                <!-- SAVED BIO -->
+
+                <div
+                    id="savedBio"
+                    class="saved-bio"
+                    style="display: none;"
+                >
+
+                    <span id="bioText"></span>
+
+                    <button
+                        id="changeBioBtn"
+                        type="button"
+                    >
+                        ✏️
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================================
+                 PROFILE OPTIONS
+            ================================================== -->
+
+            <div class="profile-options">
+
+
+                <!-- Upload picture -->
+
+                <button
+                    id="uploadPictureBtn"
+                    type="button"
+                >
+                     Change Profile Picture
+                </button>
+
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                    hidden
+                >
+
+
+                <!-- Change name -->
+
+                <button
+                    id="changeNameBtn"
+                    type="button"
+                >
+                    Change Name
+                </button>
+
+
+                <!-- Change username -->
+
+                <button
+                    id="changeUsernameButton"
+                    type="button"
+                >
+                    Change Username
+                </button>
+
+
+                <!-- Change password -->
+
+                <button
+                    id="changePasswordBtn"
+                    type="button"
+                >
+                    Change Password
+                </button>
+
+
+                <button
+                  id="otherSettingsBtn"
+                  type="button"
+               >
+                 Other Settings
+                </button>
+
+
+                
+                <button
+                  id="darkModeBtn"
+                  type="button"
+               >
+                 Back to dark mood
+                </button>
+
+
+                <!-- Friend count -->
+
+                <button
+                    id="friendCount"
+                    type="button"
+                >
+                    Friends:0
+                </button>
+
+
+                <!-- Logout -->
+
+                <button
+                    id="logoutBtn"
+                    type="button"
+                >
+                    Logout
+                </button>
+
+
+                <!-- Delete -->
+
+                <button
+                    id="deleteAccountBtn"
+                    class="danger"
+                    type="button"
+                >
+                    Delete Account
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+
+
+
+
+<section
+    id="otherSettingsPage"
+    class="page"
+>
+
+    <div class="settings-header">
+
+        <button
+            id="backToProfileBtn"
+            type="button"
+        >
+            ←
+        </button>
+
+        <h2>Other Settings</h2>
+
+    </div>
+
+    <div class="profile-options">
+
+        <button
+            id="messageSaveTypeBtn"
+            type="button"
+        >
+            Message Save Type
+        </button>
+
+        <button
+            id="kidsAccountBtn"
+            type="button"
+        >
+            Kids Account Control
+        </button>
+
+        <button
+            id="reportBtn"
+            type="button"
+        >
+            Report
+        </button>
+
+        <button
+           id="blockListBtn"
+           type="button"
+        >
+            Block List
+         </button>
+
+    </div>
+</section>
+
+
+
+
+<section
+    id="reportPage"
+    class="page"
+>
+    <h2>Report</h2>
+
+    <textarea
+        id="reportInput"
+        placeholder="Write your report..."
+        maxlength="2000"
+    ></textarea>
+
+    <button
+        id="sendReportBtn"
+        type="button"
+    >
+        Send Report
+    </button>
+</section>
+
+
+
+
+<!-- ==================================================
+     MESSAGE SAVE TYPE POPUP
+================================================== -->
+
+<div
+    id="messageSaveOverlay"
+    class="message-save-overlay"
+>
+
+    <div class="message-save-popup">
+
+        <button
+            id="closeMessageSavePopup"
+            class="message-save-close"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            Message Save Type
+        </h2>
+
+        <p>
+            Choose how your chats should be saved.
+        </p>
+
+
+        <div class="message-save-options">
+
+            <button
+                id="savePhoneBtn"
+                type="button"
+            >
+                Save chat in this phone
+            </button>
+
+
+            <button
+                id="saveDatabaseBtn"
+                type="button"
+            >
+                Save chat in SendMessage database
+            </button>
+
+
+            <button
+                id="dontSaveChatBtn"
+                type="button"
+            >
+                Don't save chat
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<!-- PROFILE PHOTO POPUP -->
+
+<div
+    id="profilePhotoOverlay"
+    class="profile-photo-overlay"
+>
+
+    <div class="profile-photo-popup">
+
+        <button
+            id="closeProfilePhotoBtn"
+            class="profile-photo-close"
+            type="button"
+        >
+            ×
+        </button>
+
+        <img
+            id="largeProfileImage"
+            src="/default-profile.png"
+            alt="Profile"
+        >
+
+        <h2 id="largeProfileName">
+            User
+        </h2>
+
+        <p id="largeProfileUsername">
+            @username
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<section
+    id="blockListPage"
+    class="page"
+>
+
+    <div class="settings-page-header">
+
+        <button
+            id="backFromBlockListBtn"
+            type="button"
+            class="settings-back-btn"
+        >
+            ←
+        </button>
+
+        <h2>Block List</h2>
+
+    </div>
+
+
+    <div
+        id="blockedUserList"
+        class="list"
+    >
+        <!-- Blocked users will appear here -->
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     CHAT USER PROFILE PAGE
+================================================== -->
+
+<section
+    id="chatUserProfilePage"
+    class="page"
+>
+
+    <!-- BACK BUTTON -->
+
+    <button
+        id="chatUserProfileBackBtn"
+        class="back-button"
+        type="button"
+    >
+        ← Back
+    </button>
+
+
+    <!-- USER PROFILE -->
+
+    <div class="chat-user-profile-header">
+
+        <img
+            id="chatProfilePageImage"
+            src="/default-profile.png"
+            alt="Profile"
+        >
+
+        <h2 id="chatProfilePageName">
+            User
+        </h2>
+
+        <p id="chatProfilePageUsername">
+            @username
+        </p>
+
+        <p id="chatProfilePageFriendCount">
+    Friends: 0
+        </p>
+
+    </div>
+
+
+    <!-- BIO -->
+
+    <div class="chat-user-bio">
+
+        <h3>Bio</h3>
+
+        <p id="chatProfilePageBio">
+            No bio yet
+        </p>
+
+    </div>
+
+
+    <!-- OPTIONS -->
+
+    <div class="profile-options">
+
+
+        <!-- Favourite -->
+
+        <button
+            id="favouriteUserBtn"
+            type="button"
+        >
+            ⭐ Favourite
+        </button>
+
+
+        <!-- Delete Chat For Me -->
+
+        <button
+            id="deleteChatForMeBtn"
+            type="button"
+        >
+            Delete Chat for Me
+        </button>
+
+
+        <!-- Delete Chat For Everyone -->
+
+        <button
+            id="deleteChatForEveryoneBtn"
+            type="button"
+        >
+            Delete Chat for Everyone
+        </button>
+
+
+        <!-- Unfriend -->
+
+        <button
+            id="chatUnfriendBtn"
+            type="button"
+        >
+            Unfriend
+        </button>
+
+
+        <!-- Block -->
+
+        <button
+            id="chatBlockBtn"
+            type="button"
+        >
+            Block
+        </button>
+
+
+        <!-- Report -->
+
+        <button
+            id="reportUserBtn"
+            type="button"
+        >
+            Report User
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     ACCOUNT CHANGE POPUP
+================================================== -->
+
+<div
+    id="accountChangeOverlay"
+    class="account-change-overlay"
+>
+
+    <div class="account-change-popup">
+
+        <!-- CLOSE -->
+
+        <button
+            id="accountChangeCloseBtn"
+            class="account-change-close"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <!-- TITLE -->
+
+        <h2 id="accountChangeTitle">
+            Change
+        </h2>
+
+
+        <!-- CHANGE NAME -->
+
+        <div
+            id="changeNameForm"
+            class="account-change-form"
+        >
+
+            <label for="newNameInput">
+                New Name
+            </label>
+
+            <input
+                id="newNameInput"
+                type="text"
+                placeholder="Enter your new name"
+                maxlength="50"
+            >
+
+            <button
+                id="saveNewNameBtn"
+                type="button"
+            >
+                Save Name
+            </button>
+
+        </div>
+
+
+        <!-- CHANGE USERNAME -->
+
+        <div
+            id="changeUsernameForm"
+            class="account-change-form"
+        >
+
+            <label for="newUsernameInput">
+                New Username
+            </label>
+
+            <input
+                id="newUsernameInput"
+                type="text"
+                placeholder="Enter your new username"
+            >
+
+            <button
+                id="saveNewUsernameBtn"
+                type="button"
+            >
+                Save Username
+            </button>
+
+        </div>
+
+
+        <!-- CHANGE PASSWORD -->
+
+        <div
+            id="changePasswordForm"
+            class="account-change-form"
+        >
+
+            <label for="currentPasswordInput">
+                Current Password
+            </label>
+
+            <input
+                id="currentPasswordInput"
+                type="password"
+                placeholder="Enter current password"
+            >
+
+
+            <label for="newPasswordInput">
+                New Password
+            </label>
+
+            <input
+                id="newPasswordInput"
+                type="password"
+                placeholder="Enter new password"
+            >
+
+
+            <label for="confirmPasswordInput">
+                Confirm New Password
+            </label>
+
+            <input
+                id="confirmPasswordInput"
+                type="password"
+                placeholder="Confirm new password"
+            >
+
+
+            <button
+                id="saveNewPasswordBtn"
+                type="button"
+            >
+                Change Password
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    </main>
+
+
+
+    <!-- ==================================================
+         CHAT SECTION
+    ================================================== -->
+
+    <section
+        id="chatSection"
+        class="chat-section"
+    >
+
+
+
+
+    <!-- CHAT SEARCH BAR -->
+
+<div
+    id="chatSearchBar"
+    class="chat-search-bar"
+    style="display: none;"
+>
+
+    <input
+        type="text"
+        id="chatSearchInput"
+        placeholder="Search messages..."
+        autocomplete="off"
+    >
+
+
+    <button
+        id="closeChatSearchBtn"
+        type="button"
+    >
+        ×
+    </button>
+
+</div>
+
+
+        <!-- ==================================================
+             CHAT HEADER
+        ================================================== -->
+
+        <header class="chat-header">
+
+
+            <button
+                id="backChatBtn"
+                type="button"
+            >
+                ←
+            </button>
+
+
+            <img
+                id="chatUserImage"
+                src="/default-profile.png"
+                alt="Profile"
+            >
+
+
+            <div>
+
+                <h3 id="chatUserName">
+                    User
+                </h3>
+
+
+                <span
+                    id="chatUserStatus"
+                >
+                    ⚫ Offline
+                </span>
+
+
+                <div
+                    id="typingIndicator"
+                    class="typing-indicator"
+                ></div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==================================================
+             MESSAGES
+        ================================================== -->
+
+        <div
+            id="messages"
+            class="messages"
+        >
+            <!-- Messages loaded by JavaScript -->
+        </div>
+
+
+
+        <!-- ==================================================
+             CHAT INPUT AREA
+        ================================================== -->
+
+        <div class="chat-input-area">
+
+
+            <!-- ATTACHMENT -->
+
+            <button
+                id="attachmentBtn"
+                type="button"
+                aria-label="Attachment"
+            >
+                :
+            </button>
+
+
+            <!-- MESSAGE INPUT -->
+
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="Write a message..."
+                autocomplete="on"
+                name="message"
+            >
+
+
+            <!-- VOICE -->
+
+            <button
+                id="voiceBtn"
+                type="button"
+                aria-label="Voice message"
+            >
+                Voice
+            </button>
+
+
+            <!-- SEND -->
+
+            <button
+                id="sendBtn"
+                type="button"
+                aria-label="Send"
+            >
+                ➤
+            </button>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             ATTACHMENT MENU
+        ================================================== -->
+
+        <div
+            id="attachmentMenu"
+            class="attachment-menu"
+            style="display: none;"
+        >
+
+            <button
+                id="sendPhotoBtn"
+                type="button"
+            >
+                Photo
+            </button>
+
+
+            <button
+                id="sendVideoBtn"
+                type="button"
+            >
+                 Video
+            </button>
+
+        </div>
+
+
+        <!-- HIDDEN FILE INPUTS -->
+
+        <input
+            type="file"
+            id="photoInput"
+            accept="image/*"
+            hidden
+        >
+
+
+        <input
+            type="file"
+            id="videoInput"
+            accept="video/*"
+            hidden
+        >
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         FRIEND ACTION MENU
+    ================================================== -->
+
+    <div
+        id="friendActionMenu"
+        class="friend-action-menu"
+        style="display: none;"
+    >
+     
+
+
+
+    <button
+    id="deleteChatFromFriendMenuBtn"
+    class="friend-action-delete"
+    type="button"
+>
+    Delete Chat
+</button>
+
+
+        <button
+            id="userInfoBtn"
+            class="friend-action-info"
+            type="button"
+        >
+            More Info
+        </button>
+
+
+        <button
+            id="unfriendBtn"
+            class="friend-action-unfriend"
+            type="button"
+        >
+            Unfriend
+        </button>
+
+
+        <button
+            id="blockBtn"
+            class="friend-action-block"
+             type="button"
+           >
+                   Block
+           </button>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         USER INFO POPUP
+    ================================================== -->
+
+    <div
+        id="userInfoOverlay"
+        class="user-info-overlay"
+    >
+
+        <div class="user-info-popup">
+
+
+            <button
+                id="userInfoClose"
+                class="user-info-close"
+                type="button"
+            >
+                ×
+            </button>
+
+
+            <div class="user-info-profile">
+
+                <img
+                    id="userInfoImage"
+                    src="/default-profile.png"
+                    alt="Profile"
+                >
+
+
+                <h2 id="userInfoName">
+                    User
+                </h2>
+
+
+                <p id="userInfoUsername">
+                    @username
+                </p>
+
+            </div>
+
+
+            <div class="user-info-about">
+
+                <h3>Bio</h3>
+
+                <p id="userInfoBio">
+                    No bio yet
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         BIO CHANGE POPUP
+    ================================================== -->
+
+    <div
+        id="changeBioOverlay"
+        class="bio-popup-overlay"
+    >
+
+        <div class="bio-popup">
+
+
+
+
+            <button
+    id="closeBioPopupBtn"
+    class="bio-popup-close"
+    type="button"
+    aria-label="Close"
+>
+    ×
+</button>
+
+
+            <!-- CONFIRM STEP -->
+
+            <div id="bioConfirmStep">
+
+                <h3>
+                    Change your bio?
+                </h3>
+
+
+                <div class="bio-popup-buttons">
+
+                    <button
+                        id="bioOkBtn"
+                        type="button"
+                    >
+                        OK
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NEW BIO STEP -->
+
+            <div
+                id="newBioStep"
+                style="display: none;"
+            >
+
+                <h3>
+                    Enter your new bio
+                </h3>
+
+
+                <input
+                    type="text"
+                    id="newBioInput"
+                    maxlength="150"
+                    placeholder="Write your new bio..."
+                >
+
+
+                <div class="bio-popup-buttons">
+
+                    <button
+                        id="saveNewBioBtn"
+                        type="button"
+                    >
+                        Save
+                    </button>
+
+
+                    <button
+                        id="ignoreBioBtn"
+                        type="button"
+                    >
+                        Remove Bio
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         MESSAGE CONTEXT MENU
+    ================================================== -->
+
+    <div
+        id="messageContextMenu"
+        class="message-context-menu"
+    >
+
+        <button
+            id="copyMessageBtn"
+            type="button"
+        >
+            Copy
+        </button>
+
+
+        <button
+            id="deleteMessageForMeBtn"
+            type="button"
+        >
+            Delete for me
+        </button>
+
+
+        <button
+            id="shareMessageBtn"
+            type="button"
+        >
+            Share
+        </button>
+
+
+        <button
+            id="reportMessageBtn"
+            type="button"
+        >
+            Report
+        </button>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         BOTTOM NAVIGATION
+    ================================================== -->
+
+    <nav class="bottom-nav">
+
+
+        <button
+            id="friendsNavBtn"
+            class="nav-btn active"
+            data-page="friendsPage"
+            type="button"
+        >
+
+            👥
+
+            <span>
+                Friends
+            </span>
+
+        </button>
+
+
+        <button
+            id="chatsNavBtn"
+            class="nav-btn"
+            data-page="chatsPage"
+            type="button"
+        >
+
+            💬
+
+            <span>
+                Chats
+            </span>
+
+        </button>
+
+
+        <button
+            id="searchNavBtn"
+            class="nav-btn"
+            data-page="searchPage"
+            type="button"
+        >
+
+            🔍
+
+            <span>
+                Search
+            </span>
+
+        </button>
+
+
+        <button
+            id="notificationsNavBtn"
+            class="nav-btn"
+            data-page="notificationsPage"
+            type="button"
+        >
+
+            🔔
+
+            <span>
+                Notifications
+            </span>
+
+        </button>
+
+
+        <button
+            id="profileNavBtn"
+            class="nav-btn"
+            data-page="profilePage"
+            type="button"
+        >
+
+            👤
+
+            <span>
+                Profile
+            </span>
+
+        </button>
+
+
+    </nav>
+
+
+</div>
+
+
+
+<!-- ==================================================
+     SUCCESS POPUP
+================================================== -->
+
+<div
+    id="changeSuccessOverlay"
+    class="change-success-overlay"
+>
+
+    <div
+        id="changeSuccessPopup"
+        class="change-success-popup"
+    >
+
+        <button
+            id="changeSuccessCloseBtn"
+            class="change-success-close"
+            type="button"
+        >
+            ×
+        </button>
+
+        <div class="change-success-icon">
+            ✓
+        </div>
+
+        <h2 id="changeSuccessTitle">
+            Success
+        </h2>
+
+        <p id="changeSuccessMessage">
+            Your information has been changed successfully.
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- ==================================================
+     ERROR POPUP
+================================================== -->
+
+<div
+    id="changeErrorOverlay"
+    class="change-error-overlay"
+>
+
+    <div
+        id="changeErrorPopup"
+        class="change-error-popup"
+    >
+
+        <button
+            id="changeErrorCloseBtn"
+            class="change-error-close"
+            type="button"
+        >
+            ×
+        </button>
+
+        <div class="change-error-icon">
+            !
+        </div>
+
+        <h2 id="changeErrorTitle">
+            Something went wrong
+        </h2>
+
+        <p id="changeErrorMessage">
+            Please check your information.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     SOCKET.IO
+================================================== -->
+
+<script
+    src="/socket.io/socket.io.js"
+></script>
+
+
+<!-- ==================================================
+     USER JS
+================================================== -->
+
+<script
+    src="user.js"
+></script>
+
+
+</body>
+
+</html>

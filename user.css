@@ -1,0 +1,6199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --primary: #111827;
+    --danger: #dc2626;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.app {
+    width: 100%;
+    max-width: 600px;
+    height: 100vh;
+    margin: auto;
+    background: var(--card);
+    position: relative;
+    overflow: hidden;
+}
+
+/* TOP BAR */
+
+.top-bar {
+    height: 64px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+}
+
+.top-bar h1 {
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.profile-btn {
+    border: none;
+    background: #f3f4f6;
+    color: var(--text);
+    padding: 9px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* MAIN */
+
+.main-content {
+    height: calc(100vh - 128px);
+    overflow: hidden;
+}
+
+.page {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    padding: 22px 18px 30px;
+}
+
+.page.active {
+    display: block;
+}
+
+.page h2 {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.page h3 {
+    font-size: 15px;
+    margin: 25px 0 12px;
+}
+
+/* LIST */
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-item {
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+}
+
+/* SEARCH */
+
+.search-box {
+    display: flex;
+    gap: 8px;
+}
+
+.search-box input {
+    flex: 1;
+    height: 50px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0 14px;
+    font-size: 15px;
+    outline: none;
+    background: var(--card);
+    color: var(--text);
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+}
+
+.search-box button {
+    width: 85px;
+    border: none;
+    border-radius: 12px;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* PROFILE */
+
+.profile-header {
+    text-align: center;
+    padding: 15px 0 25px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #e5e7eb;
+}
+
+.profile-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-header h2 {
+    margin-bottom: 5px;
+}
+
+.profile-header p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.profile-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-options button {
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: white;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    padding: 0 16px;
+    cursor: pointer;
+}
+
+.profile-options .danger {
+    color: var(--danger);
+}
+
+/* CHAT */
+
+.chat-section {
+    position: absolute;
+    inset: 64px 0 64px;
+    display: none;
+    flex-direction: column;
+    background: var(--bg);
+    z-index: 5;
+}
+
+.chat-section.active {
+    display: flex;
+}
+
+.chat-header {
+    height: 62px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 15px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+}
+
+.chat-header button {
+    border: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.chat-header h3 {
+    font-size: 16px;
+    color: var(--text);
+}
+
+.chat-header span {
+    font-size: 12px;
+    color: #22c55e;
+}
+
+/* MESSAGES */
+
+.messages {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+}
+
+.message {
+    max-width: 75%;
+    padding: 10px 13px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.message.sent {
+    align-self: flex-end;
+    background: var(--primary);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.message.received {
+    align-self: flex-start;
+    background: white;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+}
+
+/* CHAT INPUT */
+
+.chat-input-area {
+    min-height: 62px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px;
+    background: white;
+    border-top: 1px solid var(--border);
+}
+
+.chat-input-area input {
+    flex: 1;
+    height: 44px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 0 15px;
+    outline: none;
+    font-size: 14px;
+    background: var(--card);
+    color: var(--text);
+}
+
+.chat-input-area button {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: #f3f4f6;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.chat-input-area #sendBtn {
+    background: var(--primary);
+    color: white;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    background: white;
+    border-top: 1px solid var(--border);
+}
+
+.nav-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.nav-btn span {
+    font-size: 11px;
+}
+
+.nav-btn.active {
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* MOBILE */
+
+@media (max-width: 420px) {
+
+    .top-bar {
+        padding: 0 14px;
+    }
+
+    .page {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .page h2 {
+        font-size: 23px;
+    }
+
+    .search-box button {
+        width: 75px;
+    }
+
+    .message {
+        max-width: 82%;
+    }
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark {
+    --bg: #0f1115;
+    --card: #181b21;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --border: #2d323b;
+
+    /* Dark background for sent messages */
+    --primary: #111827;
+}
+
+/* Main areas */
+
+body.dark .app {
+    background: #181b21;
+}
+
+body.dark .top-bar,
+body.dark .bottom-nav,
+body.dark .chat-header,
+body.dark .chat-input-area {
+    background: #181b21;
+}
+
+/* Profile */
+
+body.dark .profile-btn {
+    background: #252a33;
+    color: #f3f4f6;
+}
+
+body.dark .profile-options button {
+    background: #181b21;
+    color: #f3f4f6;
+}
+
+/* Lists */
+
+body.dark .list-item {
+    background: #181b21;
+    color: #f3f4f6;
+}
+
+/* Search */
+
+body.dark .search-box input {
+    background: #181b21;
+    color: #f3f4f6;
+}
+
+body.dark .search-box input::placeholder {
+    color: #9ca3af;
+}
+
+body.dark .search-box button {
+    background: #ffffff;
+    color: #111827;
+}
+
+/* Chat */
+
+body.dark .chat-header {
+    background: #181b21;
+}
+
+body.dark .message.sent {
+    background: #ffffff;
+    color: #111827;
+}
+
+body.dark .message.received {
+    background: #181b21;
+    color: #f3f4f6;
+    border-color: #2d323b;
+}
+
+body.dark .chat-input-area {
+    background: #181b21;
+}
+
+body.dark .chat-input-area input {
+    background: #0f1115;
+    color: #f3f4f6;
+    border-color: #2d323b;
+}
+
+body.dark .chat-input-area input::placeholder {
+    color: #9ca3af;
+}
+
+body.dark .chat-input-area button {
+    background: #252a33;
+    color: #f3f4f6;
+}
+
+body.dark .chat-input-area #sendBtn {
+    background: #ffffff;
+    color: #111827;
+}
+
+/* Bottom navigation */
+
+body.dark .nav-btn {
+    color: #9ca3af;
+}
+
+body.dark .nav-btn.active {
+    color: #f3f4f6;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9ca3af;
+    border-radius: 10px;
+}
+
+
+.profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    background: #f3f4f6;
+    color: var(--text);
+
+    padding: 5px 10px 5px 5px;
+    border-radius: 25px;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.profile-btn img {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    background: #e5e7eb;
+}
+
+
+.chat-header img {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    background: #e5e7eb;
+    flex-shrink: 0;
+}
+
+.friend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.friend-profile-image {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: #e5e7eb;
+
+    flex-shrink: 0;
+}
+
+.friend-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.friend-info strong {
+    font-size: 15px;
+}
+
+.friend-info small {
+    color: var(--muted);
+    font-size: 12px;
+
+
+}
+
+
+
+.typing-indicator{
+    font-size: 12px;
+    color: #4CAF50;
+    margin-top: 2px;
+    min-height: 16px;
+    font-style: italic;
+}
+
+
+
+
+
+/* ==================================================
+   FRIEND ITEM
+================================================== */
+
+.friend-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+}
+
+
+/* ==================================================
+   FRIEND PROFILE IMAGE
+================================================== */
+
+.friend-profile-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+
+/* ==================================================
+   FRIEND INFO
+================================================== */
+
+.friend-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.friend-info strong {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.friend-info small {
+    font-size: 13px;
+    opacity: 0.65;
+    margin-top: 3px;
+}
+
+
+/* ==================================================
+   3 DOT BUTTON
+================================================== */
+
+.friend-menu-btn {
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 25px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+
+    color: inherit;
+
+    transition: background 0.2s ease,
+                transform 0.1s ease;
+}
+
+
+/* Hover */
+
+.friend-menu-btn:hover {
+    background: rgba(128, 128, 128, 0.15);
+}
+
+
+/* Press */
+
+.friend-menu-btn:active {
+    transform: scale(0.90);
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark .friend-menu-btn {
+    color: #ffffff;
+}
+
+body.dark .friend-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ==================================================
+   FRIEND ITEM HOVER
+================================================== */
+
+.friend-item:hover {
+    background: rgba(128, 128, 128, 0.08);
+}
+
+
+/* ==================================================
+   ADD FRIEND BUTTON
+================================================== */
+
+.add-friend-btn {
+    width: fit-content;
+
+    margin-top: 6px;
+
+    padding: 6px 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    background: #007bff;
+    color: white;
+
+    transition: 0.2s ease;
+}
+
+.add-friend-btn:hover {
+    opacity: 0.85;
+}
+
+.add-friend-btn:active {
+    transform: scale(0.95);
+
+
+}
+
+
+
+
+
+/* =========================================
+   FRIEND ACTION MENU
+========================================= */
+
+.friend-action-menu {
+    position: fixed;
+    width: 170px;
+    background: white;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+    border: 1px solid #e5e5e5;
+    z-index: 999999;
+    overflow: hidden;
+}
+
+
+/* Common button */
+
+.friend-action-menu button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 11px 12px;
+    text-align: left;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+/* Delete Chat */
+
+.friend-action-delete {
+    color: #e53935;
+}
+
+.friend-action-delete:hover {
+    background: #ffebee;
+}
+
+
+/* More Info */
+
+.friend-action-info {
+    color: #333;
+}
+
+.friend-action-info:hover {
+    background: #f1f1f1;
+}
+
+
+/* Unfriend */
+
+.friend-action-unfriend {
+    color: #f57c00;
+}
+
+.friend-action-unfriend:hover {
+    background: #fff3e0;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark .friend-action-menu {
+    background: #1f1f1f;
+    border-color: #333;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+body.dark .friend-action-menu button {
+    color: #eee;
+}
+
+body.dark .friend-action-delete {
+    color: #ff6b6b;
+}
+
+body.dark .friend-action-delete:hover {
+    background: #3a2020;
+}
+
+body.dark .friend-action-info {
+    color: #eee;
+}
+
+body.dark .friend-action-info:hover {
+    background: #303030;
+}
+
+body.dark .friend-action-unfriend {
+    color: #ffab40;
+}
+
+body.dark .friend-action-unfriend:hover {
+    background: #3a2d1c;
+}
+
+
+
+
+
+
+/* =========================================
+   USER INFO POPUP
+========================================= */
+
+.user-info-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000000;
+
+    padding: 20px;
+}
+
+
+/* Show popup */
+
+.user-info-overlay.active {
+    display: flex;
+}
+
+
+/* Popup */
+
+.user-info-popup {
+    position: relative;
+
+    width: 100%;
+    max-width: 360px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.25);
+
+    animation: userInfoPopupIn 0.2s ease;
+}
+
+
+/* Animation */
+
+@keyframes userInfoPopupIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.9)
+            translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* Close button */
+
+.user-info-close {
+
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    color: #333;
+
+    font-size: 25px;
+
+    line-height: 35px;
+
+    cursor: pointer;
+}
+
+
+.user-info-close:hover {
+
+    background: #e5e5e5;
+
+}
+
+
+/* Profile */
+
+.user-info-profile {
+
+    text-align: center;
+
+    padding-top: 10px;
+
+}
+
+
+/* Profile image */
+
+.user-info-profile img {
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 3px solid #ddd;
+}
+
+
+/* Name */
+
+.user-info-profile h2 {
+
+    margin: 12px 0 4px;
+
+    font-size: 21px;
+}
+
+
+/* Username */
+
+.user-info-profile p {
+
+    margin: 0;
+
+    color: #777;
+
+}
+
+
+/* About */
+
+.user-info-about {
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background: #f6f6f6;
+
+    border-radius: 12px;
+}
+
+
+.user-info-about h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 16px;
+
+}
+
+
+.user-info-about p {
+
+    margin: 0;
+
+    color: #555;
+
+    line-height: 1.5;
+
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark .user-info-popup {
+
+    background: #1f1f1f;
+
+    color: white;
+
+}
+
+
+body.dark .user-info-close {
+
+    background: #333;
+
+    color: white;
+
+}
+
+
+body.dark .user-info-close:hover {
+
+    background: #444;
+
+}
+
+
+body.dark .user-info-profile p {
+
+    color: #aaa;
+
+}
+
+
+body.dark .user-info-about {
+
+    background: #292929;
+
+}
+
+
+body.dark .user-info-about p {
+
+    color: #ccc;
+
+}
+
+
+
+/* =========================
+   BIO POPUP
+========================= */
+
+.bio-popup-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10000;
+}
+
+
+.bio-popup-overlay.active {
+    display: flex;
+}
+
+
+.bio-popup {
+
+    width: 90%;
+    max-width: 360px;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+
+/* =========================
+   BIO POPUP CLOSE BUTTON
+========================= */
+
+.bio-popup {
+    position: relative;
+}
+
+
+.bio-popup-close {
+
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    color: #333;
+
+    font-size: 25px;
+
+    line-height: 35px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.bio-popup-close:hover {
+    background: #e5e5e5;
+}
+
+
+.bio-popup-close:active {
+    transform: scale(0.90);
+}
+
+
+/* Dark mode */
+
+body.dark .bio-popup {
+    background: #1f1f1f;
+    color: #f3f4f6;
+}
+
+
+body.dark .bio-popup-close {
+    background: #333;
+    color: white;
+}
+
+
+body.dark .bio-popup-close:hover {
+    background: #444;
+}
+
+
+.bio-popup h3 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+}
+
+
+.bio-popup input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    margin-bottom: 12px;
+
+}
+
+
+.bio-popup-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+
+.bio-popup button {
+
+    padding: 10px 18px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+}
+
+
+#bioOkBtn {
+
+    width: 100%;
+}
+
+
+#saveNewBioBtn,
+#ignoreBioBtn {
+
+    flex: 1;
+
+}
+
+
+.saved-bio {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+}
+
+
+#bioText {
+
+    word-break: break-word;
+
+}
+
+
+#changeBioBtn {
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    padding: 3px;
+
+}
+
+
+
+/* ==================================================
+   BIO EDITOR
+================================================== */
+
+.bio-section {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+
+/* =========================
+   BIO INPUT AREA
+========================= */
+
+#bioEditor {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+
+/* =========================
+   BIO INPUT
+========================= */
+
+#bioInput {
+    flex: 1;
+
+    height: 46px;
+
+    padding: 0 15px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 12px;
+
+    background: #f7f7f7;
+
+    color: #222;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+/* Placeholder */
+
+#bioInput::placeholder {
+    color: #999;
+}
+
+
+/* Click করলে */
+
+#bioInput:focus {
+
+    border-color: #777;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   SAVE BUTTON
+========================= */
+
+#saveBioBtn {
+
+    height: 46px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #222;
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        opacity 0.15s ease,
+        background 0.2s ease;
+}
+
+
+/* Hover */
+
+#saveBioBtn:hover {
+
+    opacity: 0.9;
+
+}
+
+
+/* Click */
+
+#saveBioBtn:active {
+
+    transform: scale(0.95);
+
+}
+
+
+/* ==================================================
+   SAVED BIO
+================================================== */
+
+.saved-bio {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    max-width: 500px;
+
+    margin: 10px auto;
+
+    padding: 12px 15px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    background: #f5f5f5;
+
+    color: #333;
+
+}
+
+
+/* Bio text */
+
+#bioText {
+
+    flex: 1;
+
+    text-align: center;
+
+    word-break: break-word;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ==================================================
+   CHANGE BIO ❌ BUTTON
+================================================== */
+
+#changeBioBtn {
+
+    flex-shrink: 0;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    padding: 4px;
+
+    transition:
+        transform 0.15s ease;
+}
+
+
+#changeBioBtn:hover {
+
+    transform: scale(1.15);
+
+}
+
+
+#changeBioBtn:active {
+
+    transform: scale(0.9);
+
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark #bioInput {
+
+    background: #202020;
+
+    border-color: #444;
+
+    color: white;
+}
+
+
+body.dark #bioInput::placeholder {
+
+    color: #888;
+
+}
+
+
+body.dark #bioInput:focus {
+
+    background: #252525;
+
+    border-color: #777;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+
+body.dark #saveBioBtn {
+
+    background: #f1f1f1;
+
+    color: #111;
+}
+
+
+body.dark .saved-bio {
+
+    background: #202020;
+
+    color: white;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 450px) {
+
+    #bioEditor {
+
+        gap: 8px;
+
+    }
+
+
+    #bioInput {
+
+        height: 44px;
+
+        font-size: 14px;
+
+        padding: 0 12px;
+
+    }
+
+
+    #saveBioBtn {
+
+        height: 44px;
+
+        padding: 0 15px;
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+
+
+/* ==================================================
+   NOTIFICATION ACTION BUTTONS
+   ================================================== */
+
+.notification-actions {
+    display: flex;
+    gap: 8px;
+    margin-left: auto;
+    align-items: center;
+}
+
+
+/* ==================================================
+   ACCEPT BUTTON
+   ================================================== */
+
+.accept-friend-button {
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    background: #2563eb;
+    color: white;
+    transition: 0.2s ease;
+}
+
+.accept-friend-button:hover {
+    opacity: 0.85;
+}
+
+.accept-friend-button:active {
+    transform: scale(0.95);
+}
+
+
+/* ==================================================
+   DECLINE BUTTON
+   ================================================== */
+
+.decline-friend-button {
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    background: #e5e7eb;
+    color: #333;
+    transition: 0.2s ease;
+}
+
+.decline-friend-button:hover {
+    opacity: 0.85;
+}
+
+.decline-friend-button:active {
+    transform: scale(0.95);
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 600px) {
+
+    .notification-actions {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 8px;
+    }
+
+
+    .accept-friend-button,
+    .decline-friend-button {
+        flex: 1;
+        padding: 9px 10px;
+        font-size: 13px;
+    }
+
+}
+
+
+.notification-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.accept-request-btn,
+.decline-request-btn {
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.accept-request-btn {
+    background: #2196f3;
+    color: white;
+}
+
+.decline-request-btn {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.accept-request-btn:hover,
+.decline-request-btn:hover {
+    opacity: 0.85;
+}
+
+.friend-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.friend-info strong {
+    display: block;
+}
+
+.friend-info small {
+    display: block;
+    margin-top: 3px;
+}
+
+.notification-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.accept-friend-button,
+.decline-friend-button {
+    border: none;
+    padding: 7px 14px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.accept-friend-button {
+    background: #2196f3;
+    color: white;
+}
+
+.decline-friend-button {
+    background: #e0e0e0;
+    color: #333;
+}
+
+
+/* ==================================================
+   ATTACHMENT POPUP
+================================================== */
+
+.attachment-menu {
+    position: absolute;
+    bottom: 65px;
+    left: 10px;
+
+    width: 180px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 8px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.20);
+
+    z-index: 999999;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+/* Attachment options */
+
+.attachment-menu button {
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 12px;
+
+    text-align: left;
+
+    font-size: 15px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+
+.attachment-menu button:hover {
+    background: #f0f0f0;
+}
+
+
+/* Dark mode */
+
+body.dark .attachment-menu {
+    background: #222;
+}
+
+
+body.dark .attachment-menu button {
+    color: white;
+}
+
+
+body.dark .attachment-menu button:hover {
+    background: #333;
+}
+
+
+
+/* ==================================================
+   CHAT IMAGE
+   ================================================== */
+
+.chat-image {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: 260px;
+    max-height: 300px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+}
+
+
+/* ==================================================
+   CHAT VIDEO
+   ================================================== */
+
+.chat-video {
+    display: block;
+
+    width: auto;
+    height: auto;
+
+    max-width: 280px;
+    max-height: 320px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+}
+
+
+@media (max-width: 600px) {
+
+    .chat-image {
+        max-width: 220px;
+        max-height: 260px;
+    }
+
+    .chat-video {
+        max-width: 240px;
+        max-height: 280px;
+    }
+
+}
+
+
+
+/* ==================================================
+   MESSAGE CONTEXT MENU
+================================================== */
+
+.message-context-menu {
+    display: none;
+
+    position: fixed;
+
+    z-index: 99999;
+
+    min-width: 160px;
+
+    background: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    padding: 5px 0;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.20);
+}
+
+
+/* MENU BUTTON */
+
+.message-context-menu button {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 14px;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+
+/* HOVER */
+
+.message-context-menu button:hover {
+
+    background: #f0f0f0;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .message-context-menu {
+
+        min-width: 180px;
+
+    }
+
+    .message-context-menu button {
+
+        padding: 12px 15px;
+
+        font-size: 15px;
+
+    }
+
+}
+
+
+
+/* ==================================================
+   PAGE / CHAT VISIBILITY FIX
+================================================== */
+/* =========================================
+   PAGE VISIBILITY
+========================================= */
+
+.main-content {
+    position: relative;
+}
+
+.main-content .page {
+    display: none;
+    height: 100%;
+    overflow-y: auto;
+    padding: 22px 18px 30px;
+}
+
+.main-content .page.active {
+    display: block;
+}
+
+/* Pages that need flex layout */
+
+.main-content .page.flex-page.active {
+    display: flex;
+}
+
+.chat-section {
+    position: absolute;
+    inset: 64px 0 64px;
+    display: none;
+    flex-direction: column;
+    background: var(--bg);
+    z-index: 5;
+}
+
+.chat-section.active {
+    display: flex;
+}
+
+
+
+/* =========================================
+   OTHER SETTINGS BACK BUTTON
+========================================= */
+
+#backToProfileBtn {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3f4f6;
+    color: #111827;
+
+    font-size: 25px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+/* Hover */
+
+#backToProfileBtn:hover {
+    background: #e5e7eb;
+}
+
+
+/* Click */
+
+#backToProfileBtn:active {
+    transform: scale(0.90);
+}
+
+
+/* Dark Mode */
+
+body.dark #backToProfileBtn {
+    background: #252a33;
+    color: #f3f4f6;
+}
+
+
+body.dark #backToProfileBtn:hover {
+    background: #303640;
+}
+
+
+
+/* ==================================================
+   MESSAGE SAVE TYPE POPUP
+================================================== */
+
+.message-save-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 1000000;
+}
+
+
+/* Show popup */
+
+.message-save-overlay.active {
+    display: flex;
+}
+
+
+/* ==================================================
+   POPUP
+================================================== */
+
+.message-save-popup {
+    position: relative;
+
+    width: 100%;
+    max-width: 420px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 28px 22px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0, 0, 0, 0.25);
+
+    animation:
+        messageSavePopupIn
+        0.2s ease;
+}
+
+
+/* Animation */
+
+@keyframes messageSavePopupIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.90)
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* ==================================================
+   TITLE
+================================================== */
+
+.message-save-popup h2 {
+
+    margin: 0 35px 8px 0;
+
+    font-size: 21px;
+
+}
+
+
+.message-save-popup p {
+
+    margin: 0 0 22px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ==================================================
+   CLOSE BUTTON
+================================================== */
+
+.message-save-close {
+
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #333;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.message-save-close:hover {
+
+    background: #e5e7eb;
+
+}
+
+
+.message-save-close:active {
+
+    transform: scale(0.90);
+
+}
+
+
+/* ==================================================
+   OPTIONS
+================================================== */
+
+.message-save-options {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+.message-save-options button {
+
+    width: 100%;
+
+    min-height: 52px;
+
+    padding: 12px 15px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    background: #f9fafb;
+
+    color: #111827;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+
+}
+
+
+.message-save-options button:hover {
+
+    background: #f3f4f6;
+
+}
+
+
+.message-save-options button:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* ==================================================
+   DON'T SAVE
+================================================== */
+
+#dontSaveChatBtn {
+
+    color: #dc2626;
+
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark .message-save-popup {
+
+    background: #1f1f1f;
+
+    color: #f3f4f6;
+
+}
+
+
+body.dark .message-save-popup p {
+
+    color: #9ca3af;
+
+}
+
+
+body.dark .message-save-close {
+
+    background: #333;
+
+    color: white;
+
+}
+
+
+body.dark .message-save-close:hover {
+
+    background: #444;
+
+}
+
+
+body.dark .message-save-options button {
+
+    background: #252a33;
+
+    border-color: #333;
+
+    color: #f3f4f6;
+
+}
+
+
+body.dark .message-save-options button:hover {
+
+    background: #303640;
+
+}
+
+
+body.dark #dontSaveChatBtn {
+
+    color: #ff6b6b;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 450px) {
+
+    .message-save-popup {
+
+        padding:
+            25px 17px;
+
+        border-radius: 17px;
+
+    }
+
+
+    .message-save-popup h2 {
+
+        font-size: 19px;
+
+    }
+
+
+    .message-save-options button {
+
+        min-height: 50px;
+
+        font-size: 13px;
+
+    }
+
+}
+
+
+
+
+
+
+/* ==================================================
+   PROFILE PHOTO POPUP
+================================================== */
+
+.profile-photo-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 2000000;
+
+    padding: 20px;
+}
+
+
+.profile-photo-overlay.active {
+
+    display: flex;
+
+}
+
+
+.profile-photo-popup {
+
+    position: relative;
+
+    width: 100%;
+    max-width: 380px;
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px 20px 22px;
+
+    box-shadow:
+        0 15px 50px
+        rgba(0, 0, 0, 0.35);
+
+}
+
+
+#largeProfileImage {
+
+    width: 260px;
+    height: 260px;
+
+    max-width: 80vw;
+    max-height: 80vw;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0 auto 18px;
+
+}
+
+
+#largeProfileName {
+
+    margin: 0;
+
+    font-size: 21px;
+
+    color: #111827;
+
+}
+
+
+#largeProfileUsername {
+
+    margin: 6px 0 0;
+
+    font-size: 14px;
+
+    color: #6b7280;
+
+}
+
+
+/* CLOSE BUTTON */
+
+.profile-photo-close {
+
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    color: #333;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+}
+
+
+.profile-photo-close:hover {
+
+    background: #e5e5e5;
+
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark .profile-photo-popup {
+
+    background: #1f1f1f;
+
+}
+
+
+body.dark #largeProfileName {
+
+    color: #f3f4f6;
+
+}
+
+
+body.dark #largeProfileUsername {
+
+    color: #9ca3af;
+
+}
+
+
+body.dark .profile-photo-close {
+
+    background: #333;
+
+    color: white;
+
+}
+
+
+body.dark .profile-photo-close:hover {
+
+    background: #444;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 450px) {
+
+    #largeProfileImage {
+
+        width: 230px;
+        height: 230px;
+
+    }
+
+}
+
+
+/* =========================================
+   BLOCK BUTTON
+========================================= */
+
+.friend-action-block {
+    color: #d32f2f;
+}
+
+.friend-action-block:hover {
+    background: #ffebee;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark .friend-action-block {
+    color: #ff6b6b;
+}
+
+body.dark .friend-action-block:hover {
+    background: #3a2020;
+}
+
+
+
+/* =========================================
+   SETTINGS PAGE HEADER
+========================================= */
+
+.settings-page-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================================
+   SETTINGS BACK BUTTON
+========================================= */
+
+.settings-back-btn {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3f4f6;
+    color: #111827;
+
+    font-size: 24px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+/* Hover */
+
+.settings-back-btn:hover {
+    background: #e5e7eb;
+}
+
+
+/* Click */
+
+.settings-back-btn:active {
+    transform: scale(0.90);
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark .settings-back-btn {
+    background: #252a33;
+    color: #f3f4f6;
+}
+
+body.dark .settings-back-btn:hover {
+    background: #303641;
+}
+
+
+
+/* =========================================
+   REPORT PAGE
+========================================= */
+
+#reportPage {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Report page active */
+
+#reportPage.active {
+    display: flex;
+}
+
+
+/* Report title */
+
+#reportPage h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+
+/* Report input */
+
+#reportInput {
+    width: 100%;
+    max-width: 500px;
+    min-height: 180px;
+
+    padding: 15px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    background: var(--card);
+    color: var(--text);
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    resize: vertical;
+
+    outline: none;
+}
+
+
+/* Input focus */
+
+#reportInput:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Placeholder */
+
+#reportInput::placeholder {
+    color: var(--muted);
+}
+
+
+/* Description */
+
+#reportPage::after {
+    content:
+        "If you would like to share any comments or feedback about this app, you can let us know. We will consider your feedback.";
+
+    width: 100%;
+    max-width: 500px;
+
+    margin-top: 12px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* Send button */
+
+#sendReportBtn {
+    width: 100%;
+    max-width: 500px;
+
+    height: 48px;
+
+    margin-top: 18px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: var(--primary);
+    color: white;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        opacity 0.2s ease;
+}
+
+
+/* Hover */
+
+#sendReportBtn:hover {
+    opacity: 0.9;
+}
+
+
+/* Click */
+
+#sendReportBtn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark #reportInput:focus {
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 450px) {
+
+    #reportPage {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    #reportInput {
+        min-height: 160px;
+        font-size: 14px;
+    }
+
+    #reportPage::after {
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================
+   CHAT MODE
+========================================= */
+
+body.chat-mode .bottom-nav {
+    display: none;
+}
+
+body.chat-mode .chat-section {
+    inset: 64px 0 0;
+}
+
+
+
+/* =========================================
+   PROFILE IMAGE POPUP
+========================================= */
+
+.user-info-overlay {
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    z-index: 1000000;
+
+    padding: 20px;
+}
+
+.user-info-overlay.active {
+    display: flex;
+}
+
+
+/* Popup */
+
+.user-info-popup {
+    width: 100%;
+    max-width: 360px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    position: relative;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.3);
+
+    animation: profilePopupIn 0.2s ease;
+}
+
+
+/* Big profile image */
+
+.user-info-profile img {
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 10px auto 18px;
+
+    border: 4px solid var(--border);
+}
+
+
+/* Name */
+
+.user-info-profile h2 {
+    margin: 0;
+
+    font-size: 22px;
+}
+
+
+/* Username */
+
+.user-info-profile p {
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* Close */
+
+.user-info-close {
+    position: absolute;
+
+    top: 10px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    color: #333;
+
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.user-info-close:hover {
+    background: #e5e5e5;
+}
+
+.user-info-close:active {
+    transform: scale(0.9);
+}
+
+
+/* Animation */
+
+@keyframes profilePopupIn {
+
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* Dark mode */
+
+body.dark .user-info-close {
+    background: #333;
+    color: white;
+}
+
+body.dark .user-info-close:hover {
+    background: #444;
+}
+
+
+/* Mobile */
+
+@media (max-width: 450px) {
+
+    .user-info-popup {
+        max-width: 330px;
+    }
+
+    .user-info-profile img {
+        width: 160px;
+        height: 160px;
+    }
+
+}
+
+
+
+/* ==================================================
+   CHAT USER PROFILE PAGE
+================================================== */
+
+#chatUserProfilePage {
+    padding: 20px 18px 30px;
+}
+
+
+/* ==================================================
+   BACK BUTTON
+================================================== */
+
+#chatUserProfileBackBtn {
+    border: none;
+
+    background: #f3f4f6;
+
+    color: var(--text);
+
+    padding: 9px 15px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin-bottom: 20px;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+#chatUserProfileBackBtn:hover {
+    background: #e5e7eb;
+}
+
+
+#chatUserProfileBackBtn:active {
+    transform: scale(0.95);
+}
+
+
+/* ==================================================
+   USER PROFILE HEADER
+================================================== */
+
+.chat-user-profile-header {
+
+    text-align: center;
+
+    padding: 5px 0 20px;
+
+}
+
+
+#chatProfilePageFriendCount {
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/* Profile picture */
+
+.chat-user-profile-header img {
+
+    width: 125px;
+    height: 125px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: block;
+
+    margin: 0 auto 15px;
+
+    background: #e5e7eb;
+
+    border: 3px solid var(--border);
+
+}
+
+
+/* Name */
+
+.chat-user-profile-header h2 {
+
+    margin: 0;
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+}
+
+
+/* Username */
+
+.chat-user-profile-header p {
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+}
+
+
+/* ==================================================
+   BIO
+================================================== */
+
+.chat-user-bio {
+
+    margin: 10px 0 22px;
+
+    padding: 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: var(--card);
+
+}
+
+
+.chat-user-bio h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 15px;
+
+}
+
+
+.chat-user-bio p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+
+}
+
+
+/* ==================================================
+   PROFILE OPTIONS
+================================================== */
+
+#chatUserProfilePage .profile-options {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+#chatUserProfilePage .profile-options button {
+
+    width: 100%;
+
+    min-height: 52px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    padding: 0 16px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+#chatUserProfilePage .profile-options button:hover {
+
+    background: rgba(128, 128, 128, 0.08);
+
+}
+
+
+#chatUserProfilePage .profile-options button:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* ==================================================
+   DANGER OPTIONS
+================================================== */
+
+/* Delete */
+
+#deleteChatForMeBtn,
+#deleteChatForEveryoneBtn {
+
+    color: #dc2626;
+
+}
+
+
+/* Unfriend */
+
+#chatUnfriendBtn {
+
+    color: #f57c00;
+
+}
+
+
+/* Block */
+
+#chatBlockBtn {
+
+    color: #dc2626;
+
+}
+
+
+/* Report */
+
+#reportUserBtn {
+
+    color: #dc2626;
+
+}
+
+
+/* ==================================================
+   FAVOURITE
+================================================== */
+
+#favouriteUserBtn {
+
+    color: #d97706;
+
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark #chatUserProfileBackBtn {
+
+    background: #252a33;
+
+    color: #f3f4f6;
+
+}
+
+
+body.dark #chatUserProfileBackBtn:hover {
+
+    background: #303640;
+
+}
+
+
+body.dark .chat-user-profile-header img {
+
+    background: #252a33;
+
+    border-color: #3a404b;
+
+}
+
+
+body.dark .chat-user-bio {
+
+    background: #181b21;
+
+    border-color: #2d323b;
+
+}
+
+
+body.dark #chatUserProfilePage
+.profile-options button {
+
+    background: #181b21;
+
+    color: #f3f4f6;
+
+    border-color: #2d323b;
+
+}
+
+
+body.dark #chatUserProfilePage
+.profile-options button:hover {
+
+    background: #252a33;
+
+}
+
+
+/* Keep special option colours in dark mode */
+
+body.dark #favouriteUserBtn {
+
+    color: #fbbf24;
+
+}
+
+
+body.dark #deleteChatForMeBtn,
+body.dark #deleteChatForEveryoneBtn {
+
+    color: #ff6b6b;
+
+}
+
+
+body.dark #chatUnfriendBtn {
+
+    color: #ffab40;
+
+}
+
+
+body.dark #chatBlockBtn,
+body.dark #reportUserBtn {
+
+    color: #ff6b6b;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 450px) {
+
+    #chatUserProfilePage {
+
+        padding-left: 14px;
+        padding-right: 14px;
+
+    }
+
+
+    .chat-user-profile-header img {
+
+        width: 110px;
+        height: 110px;
+
+    }
+
+
+    .chat-user-profile-header h2 {
+
+        font-size: 21px;
+
+    }
+
+
+    #chatUserProfilePage
+    .profile-options button {
+
+        min-height: 50px;
+
+        font-size: 14px;
+
+    }
+
+}
+
+
+
+
+/* ==================================================
+   CHANGE ACCOUNT INFO POPUP
+================================================== */
+
+.change-account-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    padding: 20px;
+
+    z-index: 3000000;
+}
+
+
+.change-account-overlay.active {
+
+    display: flex;
+
+}
+
+
+/* ==================================================
+   POPUP
+================================================== */
+
+.change-account-popup {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 430px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border-radius: 22px;
+
+    padding: 30px 25px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.30);
+
+    animation:
+        changeAccountPopupIn
+        0.2s ease;
+}
+
+
+@keyframes changeAccountPopupIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.90)
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* ==================================================
+   CLOSE BUTTON
+================================================== */
+
+.change-account-close {
+
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #333;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.change-account-close:hover {
+
+    background: #e5e7eb;
+
+}
+
+
+.change-account-close:active {
+
+    transform: scale(0.9);
+
+}
+
+
+/* ==================================================
+   TITLE
+================================================== */
+
+.change-account-popup h2 {
+
+    margin: 0 45px 8px 0;
+
+    font-size: 23px;
+
+}
+
+
+.change-account-popup p {
+
+    margin: 0 0 25px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ==================================================
+   INPUT
+================================================== */
+
+.change-account-input-box,
+.change-account-password-box {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.change-account-password-box {
+
+    gap: 7px;
+
+}
+
+
+.change-account-popup label {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-top: 8px;
+
+}
+
+
+.change-account-popup input {
+
+    width: 100%;
+
+    height: 50px;
+
+    padding: 0 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    outline: none;
+
+}
+
+
+.change-account-popup input:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+/* ==================================================
+   SAVE BUTTON
+================================================== */
+
+#changeAccountSaveBtn {
+
+    width: 100%;
+
+    height: 50px;
+
+    margin-top: 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+#changeAccountSaveBtn:hover {
+
+    opacity: 0.9;
+
+}
+
+
+#changeAccountSaveBtn:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark .change-account-popup {
+
+    background: #181b21;
+
+    color: #f3f4f6;
+
+}
+
+
+body.dark .change-account-close {
+
+    background: #30343c;
+
+    color: #fff;
+
+}
+
+
+body.dark .change-account-close:hover {
+
+    background: #3a4049;
+
+}
+
+
+body.dark .change-account-popup input {
+
+    background: #0f1115;
+
+    border-color: #2d323b;
+
+    color: #f3f4f6;
+
+}
+
+
+body.dark .change-account-popup input:focus {
+
+    border-color: #777;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+body.dark #changeAccountSaveBtn {
+
+    background: #ffffff;
+
+    color: #111827;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 450px) {
+
+    .change-account-popup {
+
+        max-width: 100%;
+
+        padding:
+            28px 18px 22px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .change-account-popup h2 {
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+/* ==================================================
+   ACCOUNT CHANGE POPUP
+================================================== */
+
+.account-change-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.60);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 3000000;
+
+}
+
+
+.account-change-overlay.active {
+
+    display: flex;
+
+}
+
+
+/* ==================================================
+   POPUP
+================================================== */
+
+.account-change-popup {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 420px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border-radius: 22px;
+
+    padding: 30px 24px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.35);
+
+    animation:
+        accountPopupIn
+        0.2s ease;
+
+}
+
+
+@keyframes accountPopupIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.90)
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* ==================================================
+   TITLE
+================================================== */
+
+.account-change-popup h2 {
+
+    margin: 0 40px 25px 0;
+
+    font-size: 23px;
+
+}
+
+
+/* ==================================================
+   CLOSE BUTTON
+================================================== */
+
+.account-change-close {
+
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #333;
+
+    font-size: 27px;
+
+    line-height: 38px;
+
+    cursor: pointer;
+
+}
+
+
+.account-change-close:hover {
+
+    background: #e5e7eb;
+
+}
+
+
+.account-change-close:active {
+
+    transform: scale(0.90);
+
+}
+
+
+/* ==================================================
+   FORM
+================================================== */
+
+.account-change-form {
+
+    display: none;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+.account-change-form.active {
+
+    display: flex;
+
+}
+
+
+.account-change-form label {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-top: 5px;
+
+}
+
+
+.account-change-form input {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+}
+
+
+.account-change-form input:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+/* ==================================================
+   SAVE BUTTON
+================================================== */
+
+.account-change-form button {
+
+    width: 100%;
+
+    height: 50px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.account-change-form button:hover {
+
+    opacity: 0.9;
+
+}
+
+
+.account-change-form button:active {
+
+    transform: scale(0.98);
+
+}
+
+
+/* ==================================================
+   DARK MODE
+================================================== */
+
+body.dark .account-change-popup {
+
+    background: #181b21;
+
+    color: #f3f4f6;
+
+}
+
+
+body.dark .account-change-close {
+
+    background: #30343c;
+
+    color: white;
+
+}
+
+
+body.dark .account-change-close:hover {
+
+    background: #3a404a;
+
+}
+
+
+body.dark .account-change-form input {
+
+    background: #20242b;
+
+    color: white;
+
+    border-color: #363b45;
+
+}
+
+
+body.dark .account-change-form input::placeholder {
+
+    color: #888;
+
+}
+
+
+body.dark .account-change-form input:focus {
+
+    border-color: #777;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+body.dark .account-change-form button {
+
+    background: #ffffff;
+
+    color: #111827;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 450px) {
+
+    .account-change-overlay {
+
+        padding: 14px;
+
+    }
+
+
+    .account-change-popup {
+
+        max-width: 100%;
+
+        padding: 27px 17px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .account-change-popup h2 {
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+/* ==================================================
+   CHANGE SUCCESS POPUP
+================================================== */
+
+.change-success-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    padding: 20px;
+
+    z-index: 3000000;
+}
+
+
+/* SHOW */
+
+.change-success-overlay.active {
+    display: flex;
+}
+
+
+/* POPUP */
+
+.change-success-popup {
+    position: relative;
+
+    width: 100%;
+    max-width: 380px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border-radius: 22px;
+
+    padding: 35px 25px 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.30);
+
+    animation:
+        changeSuccessPopupIn
+        0.22s ease;
+}
+
+
+/* ANIMATION */
+
+@keyframes changeSuccessPopupIn {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.88)
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+
+/* SUCCESS ICON */
+
+.change-success-icon {
+
+    width: 65px;
+    height: 65px;
+
+    margin: 5px auto 18px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #22c55e;
+
+    color: white;
+
+    font-size: 35px;
+    font-weight: 700;
+}
+
+
+/* TITLE */
+
+.change-success-popup h2 {
+
+    margin: 0 0 10px;
+
+    font-size: 22px;
+
+}
+
+
+/* MESSAGE */
+
+.change-success-popup p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/* CLOSE BUTTON */
+
+.change-success-close {
+
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #333;
+
+    font-size: 27px;
+
+    line-height: 38px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.change-success-close:hover {
+    background: #e5e7eb;
+}
+
+
+.change-success-close:active {
+    transform: scale(0.9);
+}
+
+
+/* DARK MODE */
+
+body.dark .change-success-popup {
+    background: #1f1f1f;
+    color: #f3f4f6;
+}
+
+
+body.dark .change-success-close {
+    background: #333;
+    color: white;
+}
+
+
+body.dark .change-success-close:hover {
+    background: #444;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 450px) {
+
+    .change-success-popup {
+
+        max-width: 340px;
+
+        padding:
+            32px 20px 27px;
+
+    }
+
+    .change-success-icon {
+
+        width: 60px;
+        height: 60px;
+
+        font-size: 32px;
+
+    }
+
+    .change-success-popup h2 {
+
+        font-size: 20px;
+
+    }
+
+}
+
+
+
+
+/* ==================================================
+   CHANGE ERROR POPUP
+================================================== */
+
+.change-error-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    padding: 20px;
+
+    z-index: 3000001;
+}
+
+
+/* SHOW */
+
+.change-error-overlay.active {
+    display: flex;
+}
+
+
+/* POPUP */
+
+.change-error-popup {
+    position: relative;
+
+    width: 100%;
+    max-width: 380px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border-radius: 22px;
+
+    padding: 35px 25px 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.30);
+
+    animation:
+        changeErrorPopupIn
+        0.22s ease;
+}
+
+
+/* ANIMATION */
+
+@keyframes changeErrorPopupIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.88)
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+    }
+
+}
+
+
+/* ERROR ICON */
+
+.change-error-icon {
+
+    width: 65px;
+    height: 65px;
+
+    margin: 5px auto 18px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #dc2626;
+
+    color: white;
+
+    font-size: 35px;
+
+    font-weight: 700;
+}
+
+
+/* TITLE */
+
+.change-error-popup h2 {
+
+    margin: 0 0 10px;
+
+    font-size: 22px;
+}
+
+
+/* MESSAGE */
+
+.change-error-popup p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* CLOSE */
+
+.change-error-close {
+
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #333;
+
+    font-size: 27px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+.change-error-close:hover {
+
+    background: #e5e7eb;
+}
+
+
+.change-error-close:active {
+
+    transform: scale(0.9);
+}
+
+
+/* DARK MODE */
+
+body.dark .change-error-popup {
+
+    background: #1f1f1f;
+
+    color: #f3f4f6;
+}
+
+
+body.dark .change-error-close {
+
+    background: #333;
+
+    color: white;
+}
+
+
+body.dark .change-error-close:hover {
+
+    background: #444;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 450px) {
+
+    .change-error-popup {
+
+        max-width: 340px;
+
+        padding:
+            32px 20px 27px;
+    }
+
+
+    .change-error-icon {
+
+        width: 60px;
+        height: 60px;
+
+        font-size: 32px;
+    }
+
+
+    .change-error-popup h2 {
+
+        font-size: 20px;
+    }
+
+}
+/* ==================================================
+   SENDMESSAGE — DESKTOP LAYOUT
+================================================== */
+
+#desktopChatLayout {
+    display: flex;
+}
+
+
+/* ==================================================
+   DESKTOP
+================================================== */
+
+@media (min-width: 600px) {
+
+    body {
+        overflow: hidden;
+    }
+
+    /* =========================
+       LEFT NAVIGATION
+    ========================= */
+
+    #desktopBottomNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 70px;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: stretch;
+        justify-content: space-around;
+
+        padding: 20px 0;
+
+        box-sizing: border-box;
+
+        background: var(--bg);
+        color: var(--text);
+
+        z-index: 3000;
+    }
+
+
+    #desktopBottomNav .nav-btn {
+
+        width: 100%;
+        min-height: 60px;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        flex: 1;
+
+        border: none;
+        border-radius: 0;
+
+        background: transparent;
+        color: var(--text);
+
+        cursor: pointer;
+    }
+
+
+    #desktopBottomNav .nav-btn span,
+    #desktopBottomNav .nav-btn i {
+
+        color: var(--text);
+    }
+
+
+    #desktopBottomNav .nav-btn:hover {
+
+        background: rgba(128,128,128,0.10);
+    }
+
+
+    /* =========================
+       DESKTOP MAIN LAYOUT
+    ========================= */
+#desktopChatLayout {
+
+    display: flex;
+
+    position: fixed;
+
+    top: 64px;
+    left: 70px;
+
+    width: calc(100% - 70px);
+    height: calc(100vh - 64px);
+
+    background: var(--card);
+    color: var(--text);
+
+    z-index: 1000;
+
+    overflow: hidden;
+}
+
+    /* =========================
+       CHAT LIST
+    ========================= */
+
+    #desktopChatList {
+
+        width: 35%;
+        min-width: 320px;
+        max-width: 450px;
+
+        height: 100%;
+
+        background: var(--card);
+
+        border-right: 1px solid var(--border);
+
+        overflow-y: auto;
+
+        flex-shrink: 0;
+    }
+
+
+    /* =========================
+       RIGHT AREA
+    ========================= */
+
+    #desktopChatArea {
+
+        position: relative;
+
+        flex: 1;
+
+        height: 100%;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        background: var(--bg);
+
+        overflow: hidden;
+    }
+
+
+    /* =========================
+       NO CHAT SELECTED
+    ========================= */
+
+    #noChatsMessage {
+
+        position: absolute;
+
+        top: 50%;
+        left: 50%;
+
+        transform: translate(-50%, -50%);
+
+        margin: 0;
+
+        font-size: 26px;
+        font-weight: 500;
+
+        color: var(--muted);
+
+        text-align: center;
+
+        white-space: nowrap;
+
+        z-index: 1;
+    }
+
+
+    /* =========================
+       CHAT LIST ITEM
+    ========================= */
+
+    .desktop-chat-item {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        min-height: 70px;
+
+        padding: 10px 15px;
+
+        box-sizing: border-box;
+
+        border-bottom: 1px solid var(--border);
+
+        background: var(--card);
+
+        color: var(--text);
+
+        cursor: pointer;
+    }
+
+
+    .desktop-chat-item:hover {
+
+        background: rgba(128,128,128,0.08);
+    }
+
+
+    /* =========================
+       CHAT IMAGE
+    ========================= */
+
+    .desktop-chat-image {
+
+        width: 50px;
+        height: 50px;
+
+        border-radius: 50%;
+
+        object-fit: cover;
+
+        flex-shrink: 0;
+
+        background: #e5e7eb;
+    }
+
+
+    /* =========================
+       CHAT INFO
+    ========================= */
+
+    .desktop-chat-info {
+
+        min-width: 0;
+
+        flex: 1;
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 4px;
+    }
+
+
+    .desktop-chat-info strong {
+
+        font-size: 16px;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .desktop-chat-last-message {
+
+        font-size: 13px;
+
+        color: var(--muted);
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    /* =========================
+       CHAT SECTION
+    ========================= */
+
+    #desktopChatArea .chat-section {
+
+        position: absolute;
+
+        inset: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        flex-direction: column;
+
+        background: var(--bg);
+
+        z-index: 2;
+    }
+
+
+    #desktopChatArea .chat-section.active {
+
+        display: flex;
+    }
+
+
+    /* =========================
+       CHAT HEADER
+    ========================= */
+
+    #desktopChatArea .chat-header {
+
+        height: 70px;
+
+        flex-shrink: 0;
+
+        padding: 0 20px;
+
+        background: var(--card);
+
+        border-bottom: 1px solid var(--border);
+    }
+
+
+    /* =========================
+       MESSAGES
+    ========================= */
+
+    #desktopChatArea .messages {
+
+        flex: 1;
+
+        overflow-y: auto;
+
+        padding: 20px 30px;
+    }
+
+
+    /* =========================
+       CHAT INPUT
+    ========================= */
+
+    #desktopChatArea .chat-input-area {
+
+        min-height: 70px;
+
+        flex-shrink: 0;
+
+        padding: 10px 15px;
+
+        box-sizing: border-box;
+
+        background: var(--card);
+
+        border-top: 1px solid var(--border);
+    }
+
+
+    /* =========================
+       DARK MODE
+    ========================= */
+
+    body.dark #desktopChatLayout,
+    body.dark #desktopChatList {
+
+        background: #181b21;
+
+        color: #f3f4f6;
+    }
+
+
+    body.dark #desktopChatArea {
+
+        background: #0f1115;
+    }
+
+
+    body.dark #desktopBottomNav {
+
+        background: #181b21;
+
+        color: #ffffff;
+    }
+
+
+    body.dark #desktopBottomNav .nav-btn {
+
+        background: transparent;
+
+        color: #ffffff;
+    }
+
+
+    body.dark #desktopBottomNav .nav-btn span,
+    body.dark #desktopBottomNav .nav-btn i {
+
+        color: #ffffff;
+    }
+
+
+    body.dark .desktop-chat-item {
+
+        background: #181b21;
+
+        color: #f3f4f6;
+
+        border-color: #2d323b;
+    }
+
+
+    body.dark .desktop-chat-item:hover {
+
+        background: #252a33;
+    }
+
+
+
+
+    /* FIX DESKTOP CHAT HEADER */
+
+#desktopChatArea .chat-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    height: 70px !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+}
+
+#desktopChatArea #chatUserImage {
+    position: static !important;
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}
+
+#desktopChatArea #chatUserName {
+    position: static !important;
+    margin: 0 !important;
+    display: block !important;
+    font-size: 17px !important;
+    color: var(--text) !important;
+}
+
+#desktopChatArea #chatUserStatus {
+    position: static !important;
+    display: block !important;
+    margin: 3px 0 0 0 !important;
+    font-size: 12px !important;
+    color: var(--muted) !important;
+}
+
+
+/* FINAL DESKTOP CHAT HEADER FIX */
+
+#desktopChatArea .chat-header {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    position: relative !important;
+    width: 100% !important;
+    height: 70px !important;
+    padding: 0 20px !important;
+    box-sizing: border-box !important;
+}
+
+#desktopChatArea .chat-header > img#chatUserImage {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    float: none !important;
+
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    max-width: 45px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: block !important;
+    flex: 0 0 45px !important;
+
+    border-radius: 50% !important;
+    object-fit: cover !important;
+}
+
+#desktopChatArea .chat-header > div {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#desktopChatArea #chatUserName {
+    position: static !important;
+
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: var(--text) !important;
+
+    font-size: 17px !important;
+}
+
+#desktopChatArea #chatUserStatus {
+    position: static !important;
+
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    margin: 3px 0 0 0 !important;
+    padding: 0 !important;
+
+    color: var(--muted) !important;
+
+    font-size: 12px !important;
+}
+
+
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width: 600px) {
+
+    #desktopBottomNav,
+    #desktopChatLayout,
+    #desktopChatList,
+    #desktopChatArea,
+    .desktop-chat-item {
+
+        display: none !important;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ==================================================
+   DESKTOP DARK MODE
+================================================== */
+
+@media (min-width: 600px) {
+
+    body.dark #desktopChatLayout {
+
+        background: #181b21;
+
+        color: #f3f4f6;
+    }
+
+    body.dark #desktopChatList {
+
+        background: #181b21;
+
+        border-color: #2d323b;
+    }
+
+    body.dark #desktopChatArea {
+
+        background: #0f1115;
+    }
+
+    body.dark .desktop-chat-item {
+
+        background: #181b21;
+
+        border-color: #2d323b;
+
+        color: #f3f4f6;
+    }
+
+    body.dark .desktop-chat-item:hover {
+
+        background: #252a33;
+    }
+
+    body.dark .desktop-chat-last-message {
+
+        color: #9ca3af;
+    }
+
+}
+
+
+@media (min-width: 600px) {
+    #desktopChatLayout {
+        left: 70px;
+        width: calc(100% - 70px);
+    }
+}
+
+
+
+
+@media (min-width: 600px) {
+
+    #desktopBottomNav {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 70px !important;
+        height: 100vh !important;
+        z-index: 2000 !important;
+    }
+
+    #desktopChatLayout {
+        left: 70px !important;
+        width: calc(100% - 70px) !important;
+        z-index: 1000 !important;
+    }
+
+}
+
+
+@media (min-width: 600px) {
+
+    #desktopBottomNav {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 18px !important;
+    }
+
+    #desktopBottomNav button,
+    #desktopBottomNav .nav-btn {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 60px !important;
+        height: 55px !important;
+        flex-shrink: 0 !important;
+    }
+
+}
+
+
+
+@media (min-width: 600px) {
+
+    #desktopBottomNav {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: space-around !important;
+
+        width: 70px !important;
+        height: 100vh !important;
+
+        padding: 20px 0 !important;
+        box-sizing: border-box !important;
+
+        background: var(--bg) !important;
+        color: var(--text) !important;
+    }
+
+
+    #desktopBottomNav .nav-btn {
+        flex: 1 !important;
+
+        width: 100% !important;
+        height: auto !important;
+        min-height: 60px !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        background: var(--bg) !important;
+        color: var(--text) !important;
+
+        border: none !important;
+        border-radius: 0 !important;
+    }
+
+
+    #desktopBottomNav .nav-btn:hover {
+        background: rgba(128, 128, 128, 0.10) !important;
+    }
+
+
+    #desktopBottomNav .nav-btn i,
+    #desktopBottomNav .nav-btn span {
+        color: var(--text) !important;
+    }
+
+}
+
+
+
+
+@media (min-width: 600px) {
+
+    #desktopPageHost {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 10;
+        background: var(--bg);
+    }
+
+    #desktopPageHost > .page {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        display: none;
+        background: var(--bg);
+    }
+
+    #desktopPageHost > .page.active {
+        display: block;
+    }
+
+}
+
+
+/* ==================================================
+   DESKTOP HEADER
+   ================================================== */
+
+#desktopHeader {
+
+    position: fixed;
+
+    top: 0;
+    left: 70px;
+
+    width: calc(100% - 70px);
+    height: 64px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    background: var(--card);
+
+    border-bottom: 1px solid
+        rgba(128, 128, 128, 0.2);
+
+    z-index: 2500;
+
+    box-sizing: border-box;
+}
+
+
+/* APP NAME */
+
+#desktopAppName {
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: var(--text);
+
+    white-space: nowrap;
+}
+
+
+/* TOP PROFILE BUTTON */
+
+#desktopProfileTopBtn {
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: var(--text);
+
+    font-size: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+#desktopProfileTopBtn:hover {
+
+    background:
+        rgba(128, 128, 128, 0.15);
+}
+
+#desktopProfileTopBtn {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+#desktopProfileTopImage {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ==================================================
+   DESKTOP — HIDE MOBILE NAVIGATION & TOP BAR
+================================================== */
+
+@media (min-width: 600px) {
+
+    /* মোবাইলের নেভিগেশন বার ও টপ বার লুকাও */
+
+    .bottom-nav {
+        display: none !important;
+    }
+
+    .top-bar {
+        display: none !important;
+    }
+
+    /* ডেস্কটপে চ্যাট সেকশন ঠিকভাবে বসাও */
+
+    body.chat-mode .chat-section {
+        inset: 0;
+    }
+
+}
+
+
+
+/* ==================================================
+   DESKTOP BACK BUTTON
+================================================== */
+
+#desktopBackBtn {
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: var(--text);
+
+    font-size: 24px;
+    font-weight: 600;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    margin-left: 15px;
+    margin-right: auto;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+/* Show when history exists */
+
+#desktopBackBtn.visible {
+    display: flex;
+}
+
+
+/* Hover */
+
+#desktopBackBtn:hover {
+    background: rgba(128, 128, 128, 0.15);
+}
+
+
+/* Click */
+
+#desktopBackBtn:active {
+    transform: scale(0.90);
+}
+
+
+/* Dark mode */
+
+body.dark #desktopBackBtn {
+    color: #f3f4f6;
+}
+
+body.dark #desktopBackBtn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+
+/* ==================================================
+   SEARCH HISTORY — 3 DOT BUTTON
+================================================== */
+
+.search-history-item {
+    position: relative;
+}
+
+
+.search-menu-btn {
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+
+    color: inherit;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.search-menu-btn:hover {
+    background: rgba(128, 128, 128, 0.15);
+}
+
+
+.search-menu-btn:active {
+    transform: scale(0.90);
+}
+
+
+body.dark .search-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ==================================================
+   PIN BADGE
+================================================== */
+
+.pinned-badge {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 2px;
+
+    flex-shrink: 0;
+
+    margin-right: 4px;
+}
+
+
+.pinned-badge .pin-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+
+.pinned-badge .pin-label {
+
+    font-size: 9px;
+
+    color: var(--muted);
+
+    text-transform: lowercase;
+
+    letter-spacing: 0.2px;
+
+    font-weight: 600;
+}
+
+
+body.dark .pinned-badge .pin-label {
+    color: #9ca3af;
+}
+
+
+/* ==================================================
+   SEARCH HISTORY MENU
+================================================== */
+
+.search-history-menu {
+
+    position: fixed;
+
+    min-width: 170px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 6px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.20);
+
+    border: 1px solid #e5e5e5;
+
+    z-index: 999999;
+
+    overflow: hidden;
+}
+
+
+.search-history-menu button {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 11px 12px;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.search-history-menu .search-menu-delete {
+    color: #e53935;
+}
+
+
+.search-history-menu .search-menu-delete:hover {
+    background: #ffebee;
+}
+
+
+.search-history-menu .search-menu-pin {
+    color: #333;
+}
+
+
+.search-history-menu .search-menu-pin:hover {
+    background: #f1f1f1;
+}
+
+
+/* Dark mode */
+
+body.dark .search-history-menu {
+    background: #1f1f1f;
+    border-color: #333;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+body.dark .search-history-menu .search-menu-delete {
+    color: #ff6b6b;
+}
+
+
+body.dark .search-history-menu .search-menu-delete:hover {
+    background: #3a2020;
+}
+
+
+body.dark .search-history-menu .search-menu-pin {
+    color: #eee;
+}
+
+
+body.dark .search-history-menu .search-menu-pin:hover {
+    background: #303030;
+}
+
+/* ==================================================
+   NOTIFICATION — 3 DOT BUTTON
+================================================== */
+
+.notification-item {
+    position: relative;
+}
+
+
+.notification-menu-btn {
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+    background: transparent;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+
+    color: inherit;
+
+    transition:
+        background 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+.notification-menu-btn:hover {
+    background: rgba(128, 128, 128, 0.15);
+}
+
+
+.notification-menu-btn:active {
+    transform: scale(0.90);
+}
+
+
+body.dark .notification-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ==================================================
+   NOTIFICATION PIN BADGE
+================================================== */
+
+.notification-pinned-badge {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 2px;
+
+    flex-shrink: 0;
+
+    margin-right: 4px;
+}
+
+
+.notification-pinned-badge .pin-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+
+.notification-pinned-badge .pin-label {
+
+    font-size: 9px;
+
+    color: var(--muted);
+
+    text-transform: lowercase;
+
+    letter-spacing: 0.2px;
+
+    font-weight: 600;
+}
+
+
+body.dark .notification-pinned-badge .pin-label {
+    color: #9ca3af;
+}
+
+
+/* ==================================================
+   NOTIFICATION MENU
+================================================== */
+
+.notification-menu {
+
+    position: fixed;
+
+    min-width: 180px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 6px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.20);
+
+    border: 1px solid #e5e5e5;
+
+    z-index: 999999;
+
+    overflow: hidden;
+}
+
+
+.notification-menu button {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 11px 12px;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.notification-menu .notification-menu-delete {
+    color: #e53935;
+}
+
+
+.notification-menu .notification-menu-delete:hover {
+    background: #ffebee;
+}
+
+
+.notification-menu .notification-menu-pin {
+    color: #333;
+}
+
+
+.notification-menu .notification-menu-pin:hover {
+    background: #f1f1f1;
+}
+
+
+/* Dark mode */
+
+body.dark .notification-menu {
+    background: #1f1f1f;
+    border-color: #333;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+body.dark .notification-menu .notification-menu-delete {
+    color: #ff6b6b;
+}
+
+
+body.dark .notification-menu .notification-menu-delete:hover {
+    background: #3a2020;
+}
+
+
+body.dark .notification-menu .notification-menu-pin {
+    color: #eee;
+}
+
+
+body.dark .notification-menu .notification-menu-pin:hover {
+    background: #303030;
+}
+
+/* ==================================================
+   CHAT CONTEXT MENU
+================================================== */
+
+.chat-context-menu {
+
+    position: fixed;
+
+    min-width: 220px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 6px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.20);
+
+    border: 1px solid #e5e5e5;
+
+    z-index: 999999;
+
+    overflow: hidden;
+}
+
+
+.chat-context-menu button {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 12px 14px;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    color: #333;
+}
+
+
+.chat-context-menu button:hover {
+    background: #f1f1f1;
+}
+
+
+.chat-context-delete {
+    color: #e53935 !important;
+}
+
+
+.chat-context-delete:hover {
+    background: #ffebee !important;
+}
+
+
+.chat-context-block {
+    color: #d32f2f !important;
+}
+
+
+.chat-context-block:hover {
+    background: #ffebee !important;
+}
+
+
+.chat-context-unblock {
+    color: #16a34a !important;
+}
+
+
+.chat-context-unblock:hover {
+    background: #e7f7ec !important;
+}
+
+
+/* Dark mode */
+
+body.dark .chat-context-menu {
+    background: #1f1f1f;
+    border-color: #333;
+}
+
+
+body.dark .chat-context-menu button {
+    color: #eee;
+}
+
+
+body.dark .chat-context-menu button:hover {
+    background: #303030;
+}
+
+
+body.dark .chat-context-delete {
+    color: #ff6b6b !important;
+}
+
+
+body.dark .chat-context-block {
+    color: #ff6b6b !important;
+}
+
+
+body.dark .chat-context-unblock {
+    color: #4ade80 !important;
+}
+
+
+/* ==================================================
+   CHAT SEARCH BAR
+================================================== */
+
+.chat-search-bar {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 12px;
+
+    background: white;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.chat-search-bar input {
+
+    flex: 1;
+
+    height: 40px;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    outline: none;
+}
+
+
+.chat-search-bar input:focus {
+    border-color: var(--primary);
+}
+
+
+.chat-search-bar button {
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #333;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+
+body.dark .chat-search-bar {
+    background: #181b21;
+}
+
+
+body.dark .chat-search-bar button {
+    background: #30343c;
+    color: white;
+}
+
+
+/* ==================================================
+   MESSAGE SEARCH HIGHLIGHT
+================================================== */
+
+.message.search-highlight {
+    box-shadow:
+        0 0 0 3px #fbbf24 !important;
+}
+
+
+/* ==================================================
+   BLOCKED BANNER
+================================================== */
+
+.blocked-banner {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    background: #fee2e2;
+
+    color: #991b1b;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    border-bottom: 1px solid #fecaca;
+}
+
+
+body.dark .blocked-banner {
+    background: #3a2020;
+    color: #fca5a5;
+    border-color: #7f1d1d;
+}
